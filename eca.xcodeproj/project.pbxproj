@@ -14,6 +14,9 @@
 		477A204528B6673500A2C183 /* eca.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 477A204328B6673500A2C183 /* eca.xcdatamodeld */; };
 		477A204728B6673700A2C183 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 477A204628B6673700A2C183 /* Assets.xcassets */; };
 		477A204A28B6673700A2C183 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 477A204828B6673700A2C183 /* LaunchScreen.storyboard */; };
+		47BF4A0328B729BA006126AC /* CourseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF4A0228B729BA006126AC /* CourseVC.swift */; };
+		47BF4A0728B734B0006126AC /* IndividualCourseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF4A0628B734B0006126AC /* IndividualCourseVC.swift */; };
+		47BF4A0B28B779A4006126AC /* ReviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF4A0A28B779A4006126AC /* ReviewVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		477A204628B6673700A2C183 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		477A204928B6673700A2C183 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		477A204B28B6673700A2C183 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47BF4A0228B729BA006126AC /* CourseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseVC.swift; sourceTree = "<group>"; };
+		47BF4A0628B734B0006126AC /* IndividualCourseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualCourseVC.swift; sourceTree = "<group>"; };
+		47BF4A0A28B779A4006126AC /* ReviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,9 @@
 			children = (
 				477A203A28B6673500A2C183 /* AppDelegate.swift */,
 				477A203C28B6673500A2C183 /* SceneDelegate.swift */,
+				47BF4A0628B734B0006126AC /* IndividualCourseVC.swift */,
+				47BF4A0228B729BA006126AC /* CourseVC.swift */,
+				47BF4A0A28B779A4006126AC /* ReviewVC.swift */,
 				477A203E28B6673500A2C183 /* ViewController.swift */,
 				477A204028B6673500A2C183 /* Main.storyboard */,
 				477A204828B6673700A2C183 /* LaunchScreen.storyboard */,
@@ -143,7 +152,10 @@
 			files = (
 				477A203F28B6673500A2C183 /* ViewController.swift in Sources */,
 				477A204528B6673500A2C183 /* eca.xcdatamodeld in Sources */,
+				47BF4A0B28B779A4006126AC /* ReviewVC.swift in Sources */,
 				477A203B28B6673500A2C183 /* AppDelegate.swift in Sources */,
+				47BF4A0328B729BA006126AC /* CourseVC.swift in Sources */,
+				47BF4A0728B734B0006126AC /* IndividualCourseVC.swift in Sources */,
 				477A203D28B6673500A2C183 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

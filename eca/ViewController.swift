@@ -22,8 +22,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var filteredPopularCourses: [String]!
 
     // Popular courses
-    var popularCourses: [String] = ["Tom"]
+    var popularCourses: [String] = ["Tom", "John", "Tim", "Leonard"]
     var popularState: Bool = false
+
+    // Individual course
+    var selectedCourse = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +37,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         filteredPopularCourses = popularCourses
         let viewGesture = UITapGestureRecognizer(target: self, action: #selector(handlePopularClick))
         popularButton.addGestureRecognizer(viewGesture)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,6 +62,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.textLabel?.text = filteredPopularCourses[indexPath.row]
             return cell
         }
+    }
+
+    // Move to individual course screen
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCourseVC" {
+            let destinationVC = segue.destination as! CourseVC
+            destinationVC.chosenCourse = selectedCourse
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedCourse = filteredCourses[indexPath.row]
+        performSegue(withIdentifier: "toCourseVC", sender: nil)
     }
 
     // Popular Button Handler
