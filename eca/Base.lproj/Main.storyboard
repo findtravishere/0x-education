@@ -126,13 +126,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="username" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Kg-Ag-KzK">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="username" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Kg-Ag-KzK">
                                 <rect key="frame" x="52" y="336" width="97" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="97" id="fRl-Kb-U5z"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="userCheck:" destination="OmJ-j2-LFd" eventType="editingChanged" id="KOP-GM-xIA"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4V-3a-6un">
                                 <rect key="frame" x="294.5" y="337.5" width="119.5" height="31"/>
@@ -145,6 +148,13 @@
                                     <action selector="submitButton:" destination="OmJ-j2-LFd" eventType="touchUpInside" id="dii-bc-Hpo"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username already exists" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ks-id-TOs">
+                                <rect key="frame" x="125" y="378" width="187" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.98039221759999995" green="0.1647058874" blue="0.031372550870000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2FE-cR-mjk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -168,13 +178,53 @@
                     <navigationItem key="navigationItem" id="H7F-st-gPt"/>
                     <connections>
                         <outlet property="reviewField" destination="84N-d3-zRb" id="7zW-OG-FZI"/>
+                        <outlet property="submitButton2" destination="z4V-3a-6un" id="SE0-kt-9fF"/>
                         <outlet property="tableView" destination="9mD-7u-Uf2" id="Z7A-kk-cb3"/>
                         <outlet property="userField" destination="8Kg-Ag-KzK" id="BF6-sF-2Px"/>
+                        <outlet property="usernameError" destination="5ks-id-TOs" id="JPa-FL-6aH"/>
+                        <segue destination="fTG-Nz-FLm" kind="presentation" identifier="toIndividualReviewVC" id="VGI-gR-BRZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AIM-M9-cup" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3857.971014492754" y="116.51785714285714"/>
+            <point key="canvasLocation" x="3935" y="117"/>
+        </scene>
+        <!--Individual ReviewVC-->
+        <scene sceneID="zdm-0s-m1D">
+            <objects>
+                <viewController id="fTG-Nz-FLm" customClass="IndividualReviewVC" customModule="eca" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wKb-h2-IBA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jR-oj-Ktb">
+                                <rect key="frame" x="169" y="44" width="76" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="this is my review" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TWd-BM-beZ">
+                                <rect key="frame" x="87" y="246" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Mjo-v3-lzF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="IMl-Lc-wnU"/>
+                    <connections>
+                        <outlet property="reviewText" destination="TWd-BM-beZ" id="IDQ-VE-7RW"/>
+                        <outlet property="usernameLabel" destination="8jR-oj-Ktb" id="xbZ-j8-GQX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XOh-6D-k2m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4732" y="117"/>
         </scene>
         <!--Individual CourseVC-->
         <scene sceneID="f95-IX-QVY">

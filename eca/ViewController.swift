@@ -22,7 +22,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var filteredPopularCourses: [String]!
 
     // Popular courses
-    var popularCourses: [String] = ["Tom", "John", "Tim", "Leonard"]
+    var popularCourses: [String] = ["Beginner Python", "Advanced iOS", "React", "Git"]
     var popularState: Bool = false
 
     // Individual course
@@ -41,13 +41,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tableView.dataSource = self
+        tableView.delegate = self
+        searchBar.delegate = self
+        filteredCourses = courses
+        filteredPopularCourses = popularCourses
+        let viewGesture = UITapGestureRecognizer(target: self, action: #selector(handlePopularClick))
+        popularButton.addGestureRecognizer(viewGesture)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if !popularState {
+            print("1", filteredCourses)
             return filteredCourses.count
+
         } else {
+            print("2", filteredPopularCourses)
             return filteredPopularCourses.count
         }
     }
@@ -74,7 +84,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedCourse = filteredCourses[indexPath.row]
+        if !popularState {
+            selectedCourse = filteredCourses[indexPath.row]
+        } else {
+            selectedCourse = filteredPopularCourses[indexPath.row]
+        }
+
         performSegue(withIdentifier: "toCourseVC", sender: nil)
     }
 
@@ -83,9 +98,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if popularState {
             popularState = !popularState
             popularButton.setTitle("Popular Courses", for: .normal)
+            print(popularState)
         } else {
             popularState = !popularState
             popularButton.setTitle("All Courses", for: .normal)
+            print(popularState)
         }
         tableView.reloadData()
     }
@@ -97,23 +114,37 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         switch popularState {
             case false:
-                if searchText == "" {
+                if searchText.count == 0 {
                     filteredCourses = courses
+                    filteredPopularCourses = popularCourses
                 } else {
                     for course in courses {
                         if course.lowercased().contains(searchText.lowercased()) {
                             filteredCourses.append(course)
                         }
+                        
+                    }
+                    for course in popularCourses {
+                        if course.lowercased().contains(searchText.lowercased()) {
+                            filteredPopularCourses.append(course)
+                        }
                     }
                 }
             case true:
-                if searchText == "" {
+                if searchText.count == 0 {
                     filteredPopularCourses = popularCourses
+                    filteredCourses = courses
                 } else {
                     for course in popularCourses {
                         if course.lowercased().contains(searchText.lowercased()) {
                             filteredPopularCourses.append(course)
                         }
+                    }
+                    for course in courses {
+                        if course.lowercased().contains(searchText.lowercased()) {
+                            filteredCourses.append(course)
+                        }
+                        
                     }
                 }
         }
