@@ -18,6 +18,7 @@ class ReviewVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     var courseTitle = ""
     var review = ""
     var reviews = [String: [String: String]]()
+    var shownReview = ""
 
     var displayedReview: [String] = []
     var reviewUser: [String] = []
@@ -29,10 +30,17 @@ class ReviewVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .dark
         tableView.dataSource = self
         tableView.delegate = self
         reviewField.delegate = self
         title = courseTitle
+
+        submitButton2.backgroundColor = .clear
+        submitButton2.layer.cornerRadius = 10
+        submitButton2.layer.borderWidth = 1
+        submitButton2.layer.borderColor = UIColor.systemGray.cgColor
+
         resetFields()
         userCheck(userField!)
         checkReviewFields()
@@ -43,6 +51,10 @@ class ReviewVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         resetFields()
         userCheck(userField!)
         checkReviewFields()
+    }
+
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,9 +75,13 @@ class ReviewVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                 }
             }
         }
+        shownReview = displayedReview[indexPath.row]
+        if shownReview.count > 25 {
+            cell.textLabel?.text = "\(String(displayedReview[indexPath.row].prefix(25))) ... [read more]"
+        } else {
+            cell.textLabel?.text = displayedReview[indexPath.row]
+        }
 
-        print(displayedReview)
-        cell.textLabel?.text = displayedReview[indexPath.row]
         return cell
     }
 
@@ -80,6 +96,7 @@ class ReviewVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             let destinationVC = segue.destination as! IndividualReviewVC
             destinationVC.username = selectedUser
             destinationVC.reviewContent = selectedReview
+            destinationVC.courseTitle = courseTitle
         }
     }
 
@@ -87,7 +104,7 @@ class ReviewVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     @IBAction func submitButton(_ sender: Any) {
         userCheck(userField!)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        // container where core data saveed in
+        // container where core data saved in
         let context = appDelegate.persistentContainer.viewContext
 
         let newReview = NSEntityDescription.insertNewObject(forEntityName: "Review", into: context)
@@ -141,26 +158,31 @@ class ReviewVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         }
     }
 
+    // Checks for username field and reviews
     @IBAction func userCheck(_ sender: Any) {
         if let _ = userField.text, userField.text?.count != 0 {
             if reviewState, !reviewUser.contains(userField.text!) {
                 userState = true
+                submitButton2.layer.borderColor = UIColor.blue.cgColor
                 submitButton2.isEnabled = true
                 usernameError.isHidden = true
+
             } else if reviewUser.contains(userField.text!) {
                 submitButton2.isEnabled = false
                 usernameError.isHidden = false
+                submitButton2.layer.borderColor = UIColor.systemGray.cgColor
                 userState = false
             } else if !userState || !reviewState {
                 submitButton2.isEnabled = false
                 usernameError.isHidden = true
+                submitButton2.layer.borderColor = UIColor.systemGray.cgColor
             }
 
         } else {
             userState = false
             if !reviewState || !userState {
                 submitButton2.isEnabled = false
-                print("username empty")
+                submitButton2.layer.borderColor = UIColor.systemGray.cgColor
             }
         }
     }
@@ -168,6 +190,7 @@ class ReviewVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     // monitor whether reviews are empty
     func textViewDidChange(_ textView: UITextView) {
         checkReviewFields()
+        userCheck(userField!)
     }
 
     private func checkReviewFields() {
@@ -175,15 +198,18 @@ class ReviewVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             reviewState = true
             if reviewState, userState {
                 submitButton2.isEnabled = true
+                submitButton2.layer.borderColor = UIColor.blue.cgColor
             }
         } else {
             reviewState = false
             if !reviewState || !userState {
                 submitButton2.isEnabled = false
+                submitButton2.layer.borderColor = UIColor.systemGray.cgColor
             }
         }
     }
 
+    // Reset all modifiers after submitting
     private func resetFields() {
         userField.text = ""
         reviewField.text = ""
@@ -191,5 +217,7 @@ class ReviewVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         userState = false
         reviewState = false
         usernameError.isHidden = true
+        submitButton2.layer.borderColor = UIColor.systemGray.cgColor
+        view.endEditing(true)
     }
 }

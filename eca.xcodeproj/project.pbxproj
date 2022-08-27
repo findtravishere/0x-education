@@ -66,6 +66,7 @@
 		477A203928B6673500A2C183 /* eca */ = {
 			isa = PBXGroup;
 			children = (
+				47E2C42128BA9D49001FA583 /* Assets */,
 				477A203A28B6673500A2C183 /* AppDelegate.swift */,
 				477A203C28B6673500A2C183 /* SceneDelegate.swift */,
 				477A203E28B6673500A2C183 /* ViewController.swift */,
@@ -75,11 +76,18 @@
 				47E2C41F28BA3D97001FA583 /* IndividualReviewVC.swift */,
 				477A204028B6673500A2C183 /* Main.storyboard */,
 				477A204828B6673700A2C183 /* LaunchScreen.storyboard */,
-				477A204628B6673700A2C183 /* Assets.xcassets */,
 				477A204B28B6673700A2C183 /* Info.plist */,
 				477A204328B6673500A2C183 /* eca.xcdatamodeld */,
 			);
 			path = eca;
+			sourceTree = "<group>";
+		};
+		47E2C42128BA9D49001FA583 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				477A204628B6673700A2C183 /* Assets.xcassets */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

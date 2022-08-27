@@ -13,6 +13,7 @@ class IndividualCourseVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .dark
         title = courseTitle
         textView.text = courseTitle
     }

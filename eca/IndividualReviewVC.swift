@@ -13,9 +13,16 @@ class IndividualReviewVC: UIViewController {
 
     var reviewContent = ""
     var username = ""
+    var courseTitle = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        usernameLabel.text = username
+        overrideUserInterfaceStyle = .dark
+        usernameLabel.text = "\(username)'s review for \(courseTitle)"
+        usernameLabel.layer.cornerRadius = 5
+        usernameLabel.layer.borderWidth = 1
+        usernameLabel.layer.borderColor = UIColor.systemMint.cgColor
+        usernameLabel.lineBreakMode = .byWordWrapping
+        usernameLabel.numberOfLines = 5
         reviewText.text = reviewContent
     }
 }

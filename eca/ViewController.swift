@@ -30,6 +30,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .dark
         tableView.dataSource = self
         tableView.delegate = self
         searchBar.delegate = self
@@ -53,11 +54,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if !popularState {
-            print("1", filteredCourses)
             return filteredCourses.count
 
         } else {
-            print("2", filteredPopularCourses)
             return filteredPopularCourses.count
         }
     }
@@ -66,10 +65,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if !popularState {
             let cell = UITableViewCell()
             cell.textLabel?.text = filteredCourses[indexPath.row]
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 22.0)
+            cell.textLabel?.font = UIFont(name: "Copperplate", size: 22.0)
             return cell
         } else {
             let cell = UITableViewCell()
             cell.textLabel?.text = filteredPopularCourses[indexPath.row]
+            cell.textLabel?.font = UIFont(name: "Copperplate", size: 22.0)
             return cell
         }
     }
@@ -97,11 +99,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @objc func handlePopularClick() {
         if popularState {
             popularState = !popularState
-            popularButton.setTitle("Popular Courses", for: .normal)
+            popularButton.setTitle("🔥 View Popular Courses", for: .normal)
+            popularButton.tintColor = .systemRed
             print(popularState)
         } else {
             popularState = !popularState
-            popularButton.setTitle("All Courses", for: .normal)
+            popularButton.setTitle("🧑🏼‍💻 View All Courses", for: .normal)
+            popularButton.tintColor = .systemBlue
             print(popularState)
         }
         tableView.reloadData()
@@ -122,7 +126,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         if course.lowercased().contains(searchText.lowercased()) {
                             filteredCourses.append(course)
                         }
-                        
                     }
                     for course in popularCourses {
                         if course.lowercased().contains(searchText.lowercased()) {
@@ -144,7 +147,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         if course.lowercased().contains(searchText.lowercased()) {
                             filteredCourses.append(course)
                         }
-                        
                     }
                 }
         }
