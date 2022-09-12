@@ -167,8 +167,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username already exists" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ks-id-TOs">
-                                <rect key="frame" x="129" y="308" width="187" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User already submitted review" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ks-id-TOs">
+                                <rect key="frame" x="97" y="308" width="231" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.98039221759999995" green="0.1647058874" blue="0.031372550870000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -194,7 +194,7 @@
                             <constraint firstItem="YUn-6N-Ded" firstAttribute="centerX" secondItem="wdg-3R-Zin" secondAttribute="centerX" id="jVJ-ze-Udg"/>
                             <constraint firstItem="9mD-7u-Uf2" firstAttribute="top" secondItem="wdg-3R-Zin" secondAttribute="bottom" constant="24" id="ls8-nu-wbK"/>
                             <constraint firstItem="2FE-cR-mjk" firstAttribute="trailing" secondItem="84N-d3-zRb" secondAttribute="trailing" constant="50" id="ncK-Ad-8A1"/>
-                            <constraint firstItem="2FE-cR-mjk" firstAttribute="trailing" secondItem="5ks-id-TOs" secondAttribute="trailing" constant="98" id="pzX-ef-fwf"/>
+                            <constraint firstItem="2FE-cR-mjk" firstAttribute="trailing" secondItem="5ks-id-TOs" secondAttribute="trailing" constant="86" id="pzX-ef-fwf"/>
                             <constraint firstItem="z4V-3a-6un" firstAttribute="leading" secondItem="8Kg-Ag-KzK" secondAttribute="trailing" constant="87" id="rwp-AQ-bfh"/>
                             <constraint firstItem="8Kg-Ag-KzK" firstAttribute="centerY" secondItem="z4V-3a-6un" secondAttribute="centerY" id="wMj-ae-6yt"/>
                             <constraint firstItem="YUn-6N-Ded" firstAttribute="top" secondItem="2FE-cR-mjk" secondAttribute="top" constant="17" id="zhL-ag-qAi"/>

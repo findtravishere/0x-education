@@ -70,9 +70,10 @@ class ReviewVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         let cell = UITableViewCell()
         if reviews.keys.contains(title!) {
             for i in reviews[title!]! {
+                // add it first like a stack to workaround showing latest reviews and users first
                 if !reviewUser.contains(i.0) {
-                    displayedReview.append(i.1)
-                    reviewUser.append(i.0)
+                    displayedReview.insert(i.1, at: 0)
+                    reviewUser.insert(i.0, at: 0)
                 }
             }
         }
@@ -167,14 +168,15 @@ class ReviewVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
 
     // Checks for username field and reviews
     @IBAction func userCheck(_ sender: Any) {
-        if let _ = userField.text, userField.text?.count != 0 {
-            if reviewState, !reviewUser.contains(userField.text!) {
+        let reviewUserLowercased = reviewUser.map { $0.lowercased() } // check if user already exists in lower or uppercased
+        if let _ = userField.text?.lowercased(), userField.text?.count != 0 {
+            if reviewState, !reviewUserLowercased.contains(userField.text!.lowercased()) {
                 userState = true
                 submitButton2.layer.borderColor = UIColor.blue.cgColor
                 submitButton2.isEnabled = true
                 usernameError.isHidden = true
 
-            } else if reviewUser.contains(userField.text!) {
+            } else if reviewUserLowercased.contains(userField.text!.lowercased()) {
                 submitButton2.isEnabled = false
                 usernameError.isHidden = false
                 submitButton2.layer.borderColor = UIColor.systemGray.cgColor
@@ -228,3 +230,4 @@ class ReviewVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         view.endEditing(true)
     }
 }
+
